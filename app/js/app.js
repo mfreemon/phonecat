@@ -1,16 +1,28 @@
-
-
+'use strict';
 
 /* App Module */
 
-var phonecatApp = angular.module('phonecatApp', []);
+var phonecatApp = angular.module('phonecatApp', [
+  'ngRoute',
+  'phonecatAnimations',
 
-phonecatApp.controller('PhoneListCtrl', function($scope, $http){
-			 $http.get('phones/phones.json').success(function(data)
-			 {
-  			 $scope.phones = data;
-             });	
+  'phonecatControllers',
+  'phonecatFilters',
+  'phonecatServices'
+]);
 
-
-  		$scope.orderProp = 'age';
-});
+phonecatApp.config(['$routeProvider',
+  function($routeProvider) {
+    $routeProvider.
+      when('/phones', {
+        templateUrl: 'partials/phone-list.html',
+        controller: 'PhoneListCtrl'
+      }).
+      when('/phones/:phoneId', {
+        templateUrl: 'partials/phone-detail.html',
+        controller: 'PhoneDetailCtrl'
+      }).
+      otherwise({
+        redirectTo: '/phones'
+      });
+  }]);
