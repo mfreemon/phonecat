@@ -1,25 +1,23 @@
 
 var phonecatApp = angular.module('phonecatApp', []);
 
-phonecatApp.controller('PhoneListCtrl', function ($scope) {
-    $scope.phones = [
-        {
-            'name': 'Nexus S',
-            'snippet': 'Fast just got faster with Nexus S.',
-            'age':5
-        },
-        {
-            'name': 'Motorola XOOM™ with Wi-Fi',
-            'snippet': 'The Next, Next Generation tablet.',
-            'age': 10
-        },
-        {
-            'name': 'MOTOROLA XOOM™',
-            'snippet': 'The Next, Next Generation tablet.',
-            'age':7
-        }
+/** One method of preventing depreciation of services during minification issues using $inject**/
+//function PhoneListCtrl($scope, $http){
+//    $http.get('phones/phones.json').success(function(data){
+//        $scope.phones = data;
+//    });
+//    $scope.orderProp = 'age';
+//}
+//PhoneListCtrl.$inject = ['$scope', '$http'];
+//phonecatApp.controller('PhoneListCtrl', PhoneListCtrl);
 
-    ];
-   $scope.orderProp = "age";
-});
+
+/** another means of preventing depreciation of services during minification issues**/
+
+phonecatApp.controller('PhoneListCtrl',['$scope', '$http', function($scope, $http) {
+    $http.get('phones/phones.json').success(function(data) {
+        $scope.phones = data;
+    });
+    $scope.orderProp = "age";
+}]);
 
