@@ -1,28 +1,34 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-2">
-      <!--Sidebar content-->
 
+
+
+
+
+<div class = "container-fluid">
+  <div class = "row">
+    <div class="col-md-2">
       Search: <input ng-model="query">
       Sort by:
       <select ng-model="orderProp">
-        <option value="name">Alphabetical</option>
-        <option value="age">Newest</option>
+         <option value = "name">Alphabetical</option>
+         <option value = "age">Newest</option>
       </select>
+     </div>
+  </div>
 
-    </div>
-    <div class="col-md-10">
-      <!--Body content-->
-
-      <ul class="phones">
-        <li ng-repeat="phone in phones | filter:query | orderBy:orderProp"
-            class="thumbnail phone-listing">
-          <a href="#/phones/{{phone.id}}" class="thumb"><img ng-src="{{phone.imageUrl}}"></a>
-          <a href="#/phones/{{phone.id}}">{{phone.name}}</a>
-          <p>{{phone.snippet}}</p>
-        </li>
-      </ul>
-
-    </div>
+  <div class = "col-md-10">
+     <ul class = "phones">
+         <li ng-repeat="phone in phones | filter:query | orderBy:orderProp">
+             <a href ="#/phones/{{phone.id}}">
+               <img class ="thumb" ng-src="{{phone.imageUrl}}">
+             </a>
+             <a href = "#/phones/{{phone.id}}">{{phone.name}}</a>
+          <p>{{phone.snippet}}</p><p>Model # is {{phone.age}}</p>
+         </li>
+     </ul>
   </div>
 </div>
+
+<p> Total number of phones so far is {{phones.length}}</p>
+
+
+<p> 1+1 = {{1+1}}</p>

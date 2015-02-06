@@ -3,36 +3,31 @@
 <!doctype html>
 <html ng-app="phonecatApp">
 <head>
-    <script src= "https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script
-    <!--<script src="/bower_components/angular/angular.min.js"></script>-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.11/angular.js"></script>
-    <script src="js/controllers.js"></script>
+    <link rel ="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/app.css">
 </head>
-<body ng-controller="PhoneListCtrl">
-    <div class = "container-fluid">
-         <div class = "row">
-             Search: <input ng-model="query">
-             Sort by:
-             <select ng-model="orderProp">
-                 <option value = "name">Alphabetical</option>
-                 <option value = "age">Newest</option>
-             </select>
+<body>
 
-         </div>
-    </div>
-
-    <ul>
-         <li ng-repeat="phone in phones | filter:query | orderBy:orderProp">
-             <span>{{phone.name}}</span>
-             <p>{{phone.snippet}}</p>
-             <p>Model # is {{phone.age}}</p>
-
-         </li>
-    </ul>
-    <p> Total number of phones so far is {{phones.length}}</p>
+<div ng-view></div>
 
 
-<p> 1+1 = {{1+1}}</p>
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src= "https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/angular-route/angular-route.js"></script>
+    <script src ="js/app.js"></script>
+    <script src="js/controllers.js"></script>
 </body>
 </html>
