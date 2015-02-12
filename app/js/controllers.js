@@ -1,3 +1,5 @@
+'use strict';
+
 
 var phonecatController = angular.module('phonecatController', []);
 
@@ -15,16 +17,25 @@ var phonecatController = angular.module('phonecatController', []);
 
 
 /** another means of preventing depreciation of services during minification issues**/
-phonecatController.controller('PhoneListCtrl',['$scope', '$http', function($scope, $http) {
-    $http.get('phones/phones.json').success(function(data) {
-        $scope.phones = data;
-    });
+phonecatController.controller('PhoneListCtrl',['$scope', 'Phone', 
+	function($scope, Phone) {
+    $scope.phones = Phone.query();
     $scope.orderProp = "age";
 }]);
 
-phonecatController.controller('PhoneDetailCtrl', ['$scope','$routeParams', '$http', function($scope, $http, $routeParams){
-    $http.get('phones/' + $routeParams.phoneId + '.json').success(function(data){
-        $scope.phone = data;
+phonecatController.controller('PhoneDetailCtrl', ['$scope', '$routeParams', 'Phone',
+  function($scope, $routeParams, Phone) {
+    $scope.phone = Phone.get({phoneId: $routeParams.phoneId}, function(phone){
+    $scope.mainImageUrl = phone.images[0];
     });
-}]);
+
+    $scope.setImage = function(imageUrl){
+      $scope.mainImageUrl = imageUrl;
+    };
+  }]);
+
+
+
+//console.log(access);
+
 
